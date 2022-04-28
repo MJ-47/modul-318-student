@@ -77,19 +77,31 @@ namespace MySwissTransportApp {
     }
 
     private void SearchRecommendations(ComboBox station) {
-      var stationList = Transport.GetStations(station.Text);
-      List<string> dropDownList = new List<string>();
+      try {
+        var stationList = Transport.GetStations(station.Text);
+        List<string> dropDownList = new List<string>();
 
-      foreach (var stationItem in stationList.StationList) {
-        dropDownList.Add(stationItem.Name);
-      }
+        foreach (var stationItem in stationList.StationList) {
+          dropDownList.Add(stationItem.Name);
+        }
 
-      foreach (var dropDownItem in dropDownList) {
-        station.Items.Add(dropDownItem);
+        if (dropDownList != null) {
+          foreach (var dropDownItem in dropDownList) {
+            station.Items.Add(dropDownItem);
+          }
+        }
+
+        station.DroppedDown = true;
       }
+      catch (Exception ex) {
+        MessageBox.Show(ex.ToString());
+        throw;
+      }
+      
     }
 
 
+    
     //-----------------------Events----------------------
 
     private void btnConnectionsSearch_Click(object sender, EventArgs e) {
@@ -165,15 +177,15 @@ namespace MySwissTransportApp {
     }
 
     private void cmbxStartLocation_TextChanged(object sender, EventArgs e) {
-      SearchRecommendations(cmbxStartLocation.Text);
+      SearchRecommendations(cmbxStartLocation);
     }
 
     private void cmbxDestination_TextChanged(object sender, EventArgs e) {
-      SearchRecommendations(cmbxDestination.Text);
+      SearchRecommendations(cmbxDestination);
     }
 
     private void cmbxDepartureStation_TextChanged(object sender, EventArgs e) {
-      SearchRecommendations(cmbxDepartureStation.Text);
+      SearchRecommendations(cmbxDepartureStation);
     }
   }
 }
