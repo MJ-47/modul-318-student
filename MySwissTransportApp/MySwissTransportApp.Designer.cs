@@ -1,5 +1,5 @@
 ﻿namespace MySwissTransportApp {
-  partial class oeVApp {
+  partial class OeVApp {
     /// <summary>
     ///  Required designer variable.
     /// </summary>
@@ -23,9 +23,10 @@
     ///  the contents of this method with the code editor.
     /// </summary>
     private void InitializeComponent() {
-      System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-      System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-      this.tabCtrl = new System.Windows.Forms.TabControl();
+      System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+      System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+      System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+      this.tabControlTabs = new System.Windows.Forms.TabControl();
       this.tabPgConnections = new System.Windows.Forms.TabPage();
       this.btnPinConnections = new System.Windows.Forms.Button();
       this.groupBoxPinned = new System.Windows.Forms.GroupBox();
@@ -36,14 +37,11 @@
       this.colDeparture = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.colArrivalTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.btnConnectionsSearch = new System.Windows.Forms.Button();
-      this.pictureBoxCalendar = new System.Windows.Forms.PictureBox();
-      this.dateTimePickerDepartureTime = new System.Windows.Forms.DateTimePicker();
       this.pictureBoxSearchStart = new System.Windows.Forms.PictureBox();
       this.pictureBoxSearchGoal = new System.Windows.Forms.PictureBox();
       this.lblTitleConnections = new System.Windows.Forms.Label();
       this.cmbxDestination = new System.Windows.Forms.ComboBox();
       this.cmbxStartLocation = new System.Windows.Forms.ComboBox();
-      this.label1 = new System.Windows.Forms.Label();
       this.lblDestination = new System.Windows.Forms.Label();
       this.lblStartLocation = new System.Windows.Forms.Label();
       this.tabPgDepartures = new System.Windows.Forms.TabPage();
@@ -60,11 +58,10 @@
       this.lblTitleMap = new System.Windows.Forms.Label();
       this.pnlControl = new System.Windows.Forms.Panel();
       this.lblTitle = new System.Windows.Forms.Label();
-      this.tabCtrl.SuspendLayout();
+      this.tabControlTabs.SuspendLayout();
       this.tabPgConnections.SuspendLayout();
       this.groupBoxPinned.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.dataGridViewConnections)).BeginInit();
-      ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCalendar)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSearchStart)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSearchGoal)).BeginInit();
       this.tabPgDepartures.SuspendLayout();
@@ -74,20 +71,20 @@
       this.pnlControl.SuspendLayout();
       this.SuspendLayout();
       // 
-      // tabCtrl
+      // tabControlTabs
       // 
-      this.tabCtrl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+      this.tabControlTabs.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-      this.tabCtrl.Controls.Add(this.tabPgConnections);
-      this.tabCtrl.Controls.Add(this.tabPgDepartures);
-      this.tabCtrl.Controls.Add(this.tabPgMap);
-      this.tabCtrl.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-      this.tabCtrl.Location = new System.Drawing.Point(-4, 86);
-      this.tabCtrl.Name = "tabCtrl";
-      this.tabCtrl.SelectedIndex = 0;
-      this.tabCtrl.Size = new System.Drawing.Size(1218, 559);
-      this.tabCtrl.TabIndex = 1;
+      this.tabControlTabs.Controls.Add(this.tabPgConnections);
+      this.tabControlTabs.Controls.Add(this.tabPgDepartures);
+      this.tabControlTabs.Controls.Add(this.tabPgMap);
+      this.tabControlTabs.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+      this.tabControlTabs.Location = new System.Drawing.Point(-4, 86);
+      this.tabControlTabs.Name = "tabControlTabs";
+      this.tabControlTabs.SelectedIndex = 0;
+      this.tabControlTabs.Size = new System.Drawing.Size(1218, 559);
+      this.tabControlTabs.TabIndex = 1;
       // 
       // tabPgConnections
       // 
@@ -95,14 +92,11 @@
       this.tabPgConnections.Controls.Add(this.groupBoxPinned);
       this.tabPgConnections.Controls.Add(this.dataGridViewConnections);
       this.tabPgConnections.Controls.Add(this.btnConnectionsSearch);
-      this.tabPgConnections.Controls.Add(this.pictureBoxCalendar);
-      this.tabPgConnections.Controls.Add(this.dateTimePickerDepartureTime);
       this.tabPgConnections.Controls.Add(this.pictureBoxSearchStart);
       this.tabPgConnections.Controls.Add(this.pictureBoxSearchGoal);
       this.tabPgConnections.Controls.Add(this.lblTitleConnections);
       this.tabPgConnections.Controls.Add(this.cmbxDestination);
       this.tabPgConnections.Controls.Add(this.cmbxStartLocation);
-      this.tabPgConnections.Controls.Add(this.label1);
       this.tabPgConnections.Controls.Add(this.lblDestination);
       this.tabPgConnections.Controls.Add(this.lblStartLocation);
       this.tabPgConnections.Location = new System.Drawing.Point(4, 41);
@@ -116,8 +110,8 @@
       // btnPinConnections
       // 
       this.btnPinConnections.Enabled = false;
-      this.btnPinConnections.Image = global::MySwissTransportApp.Properties.Resources.icons8_pin_24px;
-      this.btnPinConnections.Location = new System.Drawing.Point(384, 126);
+      this.btnPinConnections.Image = global::MySwissTransportApp.Properties.Resources.icons8_pin_24px_1;
+      this.btnPinConnections.Location = new System.Drawing.Point(384, 124);
       this.btnPinConnections.Name = "btnPinConnections";
       this.btnPinConnections.Size = new System.Drawing.Size(47, 39);
       this.btnPinConnections.TabIndex = 14;
@@ -130,9 +124,9 @@
       this.groupBoxPinned.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
       this.groupBoxPinned.Controls.Add(this.listBoxPinned);
       this.groupBoxPinned.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-      this.groupBoxPinned.Location = new System.Drawing.Point(777, 23);
+      this.groupBoxPinned.Location = new System.Drawing.Point(743, 23);
       this.groupBoxPinned.Name = "groupBoxPinned";
-      this.groupBoxPinned.Size = new System.Drawing.Size(396, 197);
+      this.groupBoxPinned.Size = new System.Drawing.Size(439, 209);
       this.groupBoxPinned.TabIndex = 13;
       this.groupBoxPinned.TabStop = false;
       this.groupBoxPinned.Text = "Favoriten";
@@ -143,8 +137,9 @@
       this.listBoxPinned.ItemHeight = 25;
       this.listBoxPinned.Location = new System.Drawing.Point(6, 28);
       this.listBoxPinned.Name = "listBoxPinned";
-      this.listBoxPinned.Size = new System.Drawing.Size(384, 154);
+      this.listBoxPinned.Size = new System.Drawing.Size(427, 179);
       this.listBoxPinned.TabIndex = 0;
+      this.listBoxPinned.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listBoxPinned_MouseDoubleClick);
       // 
       // dataGridViewConnections
       // 
@@ -154,33 +149,33 @@
       this.dataGridViewConnections.BackgroundColor = System.Drawing.SystemColors.GradientInactiveCaption;
       this.dataGridViewConnections.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
       this.dataGridViewConnections.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-      dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-      dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-      dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-      dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-      dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-      dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-      dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-      this.dataGridViewConnections.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+      dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+      dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+      dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+      dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+      dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+      dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+      dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+      this.dataGridViewConnections.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
       this.dataGridViewConnections.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
       this.dataGridViewConnections.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colStartLocation,
             this.colDestination,
             this.colDeparture,
             this.colArrivalTime});
-      dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
-      dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
-      dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-      dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
-      dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-      dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-      dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-      this.dataGridViewConnections.DefaultCellStyle = dataGridViewCellStyle6;
-      this.dataGridViewConnections.Location = new System.Drawing.Point(34, 238);
+      dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
+      dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+      dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+      dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+      dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+      dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+      dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+      this.dataGridViewConnections.DefaultCellStyle = dataGridViewCellStyle2;
+      this.dataGridViewConnections.Location = new System.Drawing.Point(30, 238);
       this.dataGridViewConnections.Name = "dataGridViewConnections";
       this.dataGridViewConnections.RowHeadersVisible = false;
       this.dataGridViewConnections.RowTemplate.Height = 40;
-      this.dataGridViewConnections.Size = new System.Drawing.Size(1139, 269);
+      this.dataGridViewConnections.Size = new System.Drawing.Size(1152, 269);
       this.dataGridViewConnections.TabIndex = 12;
       // 
       // colStartLocation
@@ -214,7 +209,7 @@
       // 
       // btnConnectionsSearch
       // 
-      this.btnConnectionsSearch.Location = new System.Drawing.Point(150, 126);
+      this.btnConnectionsSearch.Location = new System.Drawing.Point(150, 124);
       this.btnConnectionsSearch.Name = "btnConnectionsSearch";
       this.btnConnectionsSearch.Size = new System.Drawing.Size(216, 39);
       this.btnConnectionsSearch.TabIndex = 11;
@@ -222,27 +217,6 @@
       this.btnConnectionsSearch.UseVisualStyleBackColor = true;
       this.btnConnectionsSearch.Click += new System.EventHandler(this.btnConnectionsSearch_Click);
       this.btnConnectionsSearch.MouseHover += new System.EventHandler(this.btnConnectionsSearch_MouseHover);
-      // 
-      // pictureBoxCalendar
-      // 
-      this.pictureBoxCalendar.Image = global::MySwissTransportApp.Properties.Resources.icons8_calendar_50px;
-      this.pictureBoxCalendar.InitialImage = global::MySwissTransportApp.Properties.Resources.icons8_calendar_50px;
-      this.pictureBoxCalendar.Location = new System.Drawing.Point(107, 187);
-      this.pictureBoxCalendar.Name = "pictureBoxCalendar";
-      this.pictureBoxCalendar.Size = new System.Drawing.Size(33, 33);
-      this.pictureBoxCalendar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-      this.pictureBoxCalendar.TabIndex = 9;
-      this.pictureBoxCalendar.TabStop = false;
-      // 
-      // dateTimePickerDepartureTime
-      // 
-      this.dateTimePickerDepartureTime.CustomFormat = "MM/dd/yyyy, hh:mm";
-      this.dateTimePickerDepartureTime.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-      this.dateTimePickerDepartureTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-      this.dateTimePickerDepartureTime.Location = new System.Drawing.Point(150, 187);
-      this.dateTimePickerDepartureTime.Name = "dateTimePickerDepartureTime";
-      this.dateTimePickerDepartureTime.Size = new System.Drawing.Size(281, 33);
-      this.dateTimePickerDepartureTime.TabIndex = 3;
       // 
       // pictureBoxSearchStart
       // 
@@ -257,7 +231,7 @@
       // pictureBoxSearchGoal
       // 
       this.pictureBoxSearchGoal.Image = global::MySwissTransportApp.Properties.Resources.search_32px;
-      this.pictureBoxSearchGoal.Location = new System.Drawing.Point(103, 77);
+      this.pictureBoxSearchGoal.Location = new System.Drawing.Point(103, 69);
       this.pictureBoxSearchGoal.Name = "pictureBoxSearchGoal";
       this.pictureBoxSearchGoal.Size = new System.Drawing.Size(41, 40);
       this.pictureBoxSearchGoal.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -279,11 +253,11 @@
       // 
       this.cmbxDestination.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
       this.cmbxDestination.FormattingEnabled = true;
-      this.cmbxDestination.Location = new System.Drawing.Point(150, 77);
+      this.cmbxDestination.Location = new System.Drawing.Point(150, 69);
       this.cmbxDestination.Name = "cmbxDestination";
       this.cmbxDestination.Size = new System.Drawing.Size(281, 40);
       this.cmbxDestination.TabIndex = 2;
-      this.cmbxDestination.TextChanged += new System.EventHandler(this.cmbxDestination_TextChanged);
+      this.cmbxDestination.KeyUp += new System.Windows.Forms.KeyEventHandler(this.cmbxDestination_KeyUp);
       // 
       // cmbxStartLocation
       // 
@@ -293,19 +267,7 @@
       this.cmbxStartLocation.Name = "cmbxStartLocation";
       this.cmbxStartLocation.Size = new System.Drawing.Size(281, 40);
       this.cmbxStartLocation.TabIndex = 1;
-      this.cmbxStartLocation.TextChanged += new System.EventHandler(this.cmbxStartLocation_TextChanged);
-      // 
-      // label1
-      // 
-      this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-      this.label1.AutoSize = true;
-      this.label1.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-      this.label1.Location = new System.Drawing.Point(24, 196);
-      this.label1.Name = "label1";
-      this.label1.Size = new System.Drawing.Size(68, 25);
-      this.label1.TabIndex = 1;
-      this.label1.Text = "Datum";
+      this.cmbxStartLocation.KeyUp += new System.Windows.Forms.KeyEventHandler(this.cmbxStartLocation_KeyUp);
       // 
       // lblDestination
       // 
@@ -313,7 +275,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
       this.lblDestination.AutoSize = true;
       this.lblDestination.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-      this.lblDestination.Location = new System.Drawing.Point(39, 80);
+      this.lblDestination.Location = new System.Drawing.Point(39, 72);
       this.lblDestination.Name = "lblDestination";
       this.lblDestination.Size = new System.Drawing.Size(53, 32);
       this.lblDestination.TabIndex = 1;
@@ -366,7 +328,7 @@
       this.cmbxDepartureStation.Name = "cmbxDepartureStation";
       this.cmbxDepartureStation.Size = new System.Drawing.Size(281, 40);
       this.cmbxDepartureStation.TabIndex = 13;
-      this.cmbxDepartureStation.TextChanged += new System.EventHandler(this.cmbxDepartureStation_TextChanged);
+      this.cmbxDepartureStation.KeyUp += new System.Windows.Forms.KeyEventHandler(this.cmbxDepartureStation_KeyUp);
       // 
       // lblDepartureStation
       // 
@@ -384,6 +346,14 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
       this.dataGridViewDepartures.BackgroundColor = System.Drawing.SystemColors.GradientInactiveCaption;
+      dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
+      dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+      dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+      dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+      dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+      dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+      dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+      this.dataGridViewDepartures.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
       this.dataGridViewDepartures.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
       this.dataGridViewDepartures.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colFromStation,
@@ -392,7 +362,7 @@
       this.dataGridViewDepartures.Location = new System.Drawing.Point(29, 138);
       this.dataGridViewDepartures.Name = "dataGridViewDepartures";
       this.dataGridViewDepartures.RowHeadersVisible = false;
-      this.dataGridViewDepartures.RowTemplate.Height = 25;
+      this.dataGridViewDepartures.RowTemplate.Height = 40;
       this.dataGridViewDepartures.Size = new System.Drawing.Size(1153, 369);
       this.dataGridViewDepartures.TabIndex = 7;
       // 
@@ -445,7 +415,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
       this.webViewMap.CreationProperties = null;
       this.webViewMap.DefaultBackgroundColor = System.Drawing.Color.White;
-      this.webViewMap.Location = new System.Drawing.Point(170, 98);
+      this.webViewMap.Location = new System.Drawing.Point(164, 87);
       this.webViewMap.Name = "webViewMap";
       this.webViewMap.Size = new System.Drawing.Size(870, 409);
       this.webViewMap.Source = new System.Uri("https://www.google.ch/maps/@46.8358449,7.658535,9z?hl=de", System.UriKind.Absolute);
@@ -457,7 +427,7 @@
       this.lblTitleMap.Anchor = System.Windows.Forms.AnchorStyles.Top;
       this.lblTitleMap.AutoSize = true;
       this.lblTitleMap.Font = new System.Drawing.Font("Segoe UI Semibold", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-      this.lblTitleMap.Location = new System.Drawing.Point(550, 22);
+      this.lblTitleMap.Location = new System.Drawing.Point(547, 17);
       this.lblTitleMap.Name = "lblTitleMap";
       this.lblTitleMap.Size = new System.Drawing.Size(105, 47);
       this.lblTitleMap.TabIndex = 7;
@@ -486,22 +456,23 @@
       this.lblTitle.TabIndex = 1;
       this.lblTitle.Text = "öV App";
       // 
-      // oeVApp
+      // OeVApp
       // 
       this.AcceptButton = this.btnConnectionsSearch;
       this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(1216, 646);
       this.Controls.Add(this.pnlControl);
-      this.Controls.Add(this.tabCtrl);
-      this.Name = "oeVApp";
+      this.Controls.Add(this.tabControlTabs);
+      this.Name = "OeVApp";
       this.Text = "öV App";
-      this.tabCtrl.ResumeLayout(false);
+      this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.oeVApp_FormClosing);
+      this.Load += new System.EventHandler(this.oeVApp_Load);
+      this.tabControlTabs.ResumeLayout(false);
       this.tabPgConnections.ResumeLayout(false);
       this.tabPgConnections.PerformLayout();
       this.groupBoxPinned.ResumeLayout(false);
       ((System.ComponentModel.ISupportInitialize)(this.dataGridViewConnections)).EndInit();
-      ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCalendar)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSearchStart)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSearchGoal)).EndInit();
       this.tabPgDepartures.ResumeLayout(false);
@@ -518,17 +489,14 @@
 
     #endregion
 
-    private TabControl tabCtrl;
+    private TabControl tabControlTabs;
     private TabPage tabPgConnections;
     private Button btnConnectionsSearch;
-    private PictureBox pictureBoxCalendar;
-    private DateTimePicker dateTimePickerDepartureTime;
     private PictureBox pictureBoxSearchStart;
     private PictureBox pictureBoxSearchGoal;
     private Label lblTitleConnections;
     private ComboBox cmbxDestination;
     private ComboBox cmbxStartLocation;
-    private Label label1;
     private Label lblDestination;
     private Label lblStartLocation;
     private TabPage tabPgDepartures;

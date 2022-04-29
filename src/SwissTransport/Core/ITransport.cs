@@ -1,4 +1,6 @@
-﻿namespace SwissTransport.Core
+﻿using System;
+
+namespace SwissTransport.Core
 {
     using System.Threading.Tasks;
     using SwissTransport.Models;

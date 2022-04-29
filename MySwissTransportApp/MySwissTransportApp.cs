@@ -2,18 +2,20 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.DirectoryServices.ActiveDirectory;
 using System.Drawing;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 using SwissTransport.Core;
 using SwissTransport.Models;
 
 namespace MySwissTransportApp {
-  public partial class oeVApp : System.Windows.Forms.Form {
-    public oeVApp() {
+  public partial class OeVApp : System.Windows.Forms.Form {
+    public OeVApp() {
       InitializeComponent();
     }
 
@@ -21,10 +23,12 @@ namespace MySwissTransportApp {
 
     //-------------------Global Variables-------------------
 
+    public static string userName = System.Security.Principal.WindowsIdentity.GetCurrent().Name;
+    public string PinnedConnectionsPath = @"%TEMP%";
     public static List<PinConnection> PinnedConnections = new List<PinConnection>();
+
     public ITransport Transport = new Transport();
     public bool TableContainsItems = false;
-    public bool IsPinned = false;
 
 
 
@@ -35,6 +39,8 @@ namespace MySwissTransportApp {
       if (!string.IsNullOrWhiteSpace(cmbxStartLocation.Text) && !string.IsNullOrWhiteSpace(cmbxDestination.Text) && !TableContainsItems) {
         string startLocation = cmbxStartLocation.Text;
         string destination = cmbxDestination.Text;
+
+
 
         var ConnectionList = Transport.GetConnections(startLocation, destination);
 
@@ -55,9 +61,12 @@ namespace MySwissTransportApp {
 
       else if (TableContainsItems) {
 
+        TableContainsItems = false;
+
         dataGridViewConnections.Rows.Clear();
 
         SearchForConnections();
+        
       }
 
       else MessageBox.Show("Bitte geben Sie Start und Ziel ein.");
@@ -70,38 +79,64 @@ namespace MySwissTransportApp {
 
         foreach (PinConnection connection in PinnedConnections) {
 
-          listBoxPinned.Items.Add(connection.StartLocation + "\t" + connection.Destination);
+          listBoxPinned.Items.Add(connection.StartLocation + " --> " + connection.Destination);
         }
       }
 
     }
 
     private void SearchRecommendations(ComboBox station) {
+
+      if (string.IsNullOrEmpty(station.Text)) {
+        return;
+      }
+
       try {
-        var stationList = Transport.GetStations(station.Text);
-        List<string> dropDownList = new List<string>();
 
-        foreach (var stationItem in stationList.StationList) {
-          dropDownList.Add(stationItem.Name);
-        }
+        if (station.Text.Length >= 4) {
+          station.DroppedDown = true;
+          Cursor.Current = Cursors.Default;
 
-        if (dropDownList != null) {
-          foreach (var dropDownItem in dropDownList) {
-            station.Items.Add(dropDownItem);
+          List<string> dropDownList = new List<string>();
+          station.Items.Clear();
+
+          var stationList = Transport.GetStations(station.Text);
+
+          station.SelectionStart = station.Text.Length + 1;
+
+          foreach (var stationItem in stationList.StationList) {
+            dropDownList.Add(stationItem.Name);
           }
-        }
 
-        station.DroppedDown = true;
+          if (dropDownList != null) {
+
+            foreach (var dropDownItem in dropDownList) {
+              station.Items.Add(dropDownItem);
+            }
+          }
+
+        }
       }
-      catch (Exception ex) {
-        MessageBox.Show(ex.ToString());
-        throw;
+
+      catch {
+        station.Items.Clear();
+        station.SelectionStart = station.Text.Length + 1;
+        station.Items.Add("Keine Übereinstimmung.");
       }
-      
+
+
+    }
+
+    private void CheckIfTabIsChanged() {
+      if (tabControlTabs.SelectedTab == tabPgDepartures) {
+        AcceptButton = btnDeparturesSearch;
+      }
+
+      else AcceptButton = btnConnectionsSearch;
     }
 
 
-    
+
     //-----------------------Events----------------------
 
     private void btnConnectionsSearch_Click(object sender, EventArgs e) {
@@ -111,26 +146,21 @@ namespace MySwissTransportApp {
 
     private void btnPinConnections_Click(object sender, EventArgs e) {
       PinConnection pinConnection = new PinConnection();
+      pinConnection.IsPinned = false;
 
       pinConnection.StartLocation = cmbxStartLocation.Text;
       pinConnection.Destination = cmbxDestination.Text;
 
       if (!pinConnection.IsThisConnectionPinned(cmbxStartLocation.Text, cmbxDestination.Text) && PinnedConnections.Count < 5) {
+
         PinnedConnections.Add(pinConnection);
-
-        btnPinConnections.Image = Properties.Resources.icons8_pin_24px_1;
-
-        IsPinned = true;
 
         OutputPinnedConnections();
       }
 
       else if (pinConnection.IsThisConnectionPinned(cmbxStartLocation.Text, cmbxDestination.Text)) {
+
         pinConnection.RemovePinnedConnection(pinConnection);
-
-        btnPinConnections.Image = Properties.Resources.icons8_pin_24px;
-
-        IsPinned = false;
 
         OutputPinnedConnections();
       }
@@ -165,27 +195,86 @@ namespace MySwissTransportApp {
     }
 
     private void btnPinConnections_MouseHover(object sender, EventArgs e) {
-      if (IsPinned) {
-        System.Windows.Forms.ToolTip toolTipSearchButton = new System.Windows.Forms.ToolTip();
-        toolTipSearchButton.SetToolTip(this.btnPinConnections, "Entheften");
+      System.Windows.Forms.ToolTip toolTipSearchButton = new System.Windows.Forms.ToolTip();
+      toolTipSearchButton.SetToolTip(this.btnPinConnections, "An- oder Abheften");
+    }
+
+    private void cmbxStartLocation_KeyUp(object sender, KeyEventArgs e) {
+      CheckIfTabIsChanged();
+
+      if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up) ;
+
+      else if (e.KeyCode == Keys.Enter) {
+
+        if (cmbxStartLocation.Text.Length > 0) {
+          cmbxDestination.Select();
+        }
       }
 
-      if (!IsPinned) {
-        System.Windows.Forms.ToolTip toolTipSearchButton = new System.Windows.Forms.ToolTip();
-        toolTipSearchButton.SetToolTip(this.btnPinConnections, "Anheften");
+      else SearchRecommendations(cmbxStartLocation);
+
+    }
+
+    private void cmbxDestination_KeyUp(object sender, KeyEventArgs e) {
+      CheckIfTabIsChanged();
+
+      if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up || e.KeyCode == Keys.Enter) ;
+
+      else SearchRecommendations(cmbxDestination);
+
+    }
+
+    private void cmbxDepartureStation_KeyUp(object sender, KeyEventArgs e) {
+      CheckIfTabIsChanged();
+
+      if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up || e.KeyCode == Keys.Enter) ;
+
+      else SearchRecommendations(cmbxDepartureStation);
+
+    }
+
+    private void listBoxPinned_MouseDoubleClick(object sender, MouseEventArgs e) {
+      if (listBoxPinned.Items.Count > 0) {
+        string[] subStringStations = null;
+
+        string selectedItem = listBoxPinned.SelectedItem.ToString();
+        subStringStations = selectedItem.Split(" --> ");
+
+
+        cmbxStartLocation.Text = subStringStations[0];
+        cmbxDestination.Text = subStringStations[1];
+
+        SearchForConnections();
       }
+
+      else;
     }
 
-    private void cmbxStartLocation_TextChanged(object sender, EventArgs e) {
-      SearchRecommendations(cmbxStartLocation);
+    private void oeVApp_Load(object sender, EventArgs e) {
+      //using (FileStream fs = File.Create(PinnedConnectionsPath)) ;
+
+      if (File.Exists(PinnedConnectionsPath)) {
+        string[] lines = File.ReadAllLines(PinnedConnectionsPath);
+
+        foreach (string line in lines) {
+          listBoxPinned.Items.Add(line);
+        }
+      }
+
+      else;
     }
 
-    private void cmbxDestination_TextChanged(object sender, EventArgs e) {
-      SearchRecommendations(cmbxDestination);
-    }
+    private void oeVApp_FormClosing(object sender, FormClosingEventArgs e) {
+      List<string> JoinArray = new List<string>();
 
-    private void cmbxDepartureStation_TextChanged(object sender, EventArgs e) {
-      SearchRecommendations(cmbxDepartureStation);
+      foreach (string pinnedItem in listBoxPinned.Items) {
+        JoinArray.Add(pinnedItem);
+      }
+      
+      //string.Join("\n", JoinArray)
+      File.WriteAllText(Path.Combine(PinnedConnectionsPath, ""), string.Join("\n", JoinArray));
+
+
     }
   }
 }

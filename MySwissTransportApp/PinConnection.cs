@@ -15,10 +15,12 @@ namespace MySwissTransportApp {
     public string Destination { get; set; }
     public string StartLocation { get; set; }
 
+    public bool IsPinned { get; set; }
+
 
     public bool IsThisConnectionPinned(string start, string dest) {
 
-      foreach (PinConnection connection in oeVApp.PinnedConnections) {
+      foreach (PinConnection connection in OeVApp.PinnedConnections) {
 
         if (connection.Destination == dest && connection.StartLocation == start) {
           return true;
@@ -32,19 +34,14 @@ namespace MySwissTransportApp {
     }
 
     public void RemovePinnedConnection(PinConnection pinnedConnection) {
-      bool containsPinnedConnection = false;
 
-      foreach (PinConnection pinnedItems in oeVApp.PinnedConnections) {
+      foreach (PinConnection pinnedItems in OeVApp.PinnedConnections) {
+
         if (pinnedItems.StartLocation == pinnedConnection.StartLocation && pinnedItems.Destination == pinnedConnection.Destination) {
-          containsPinnedConnection = true;
+          OeVApp.PinnedConnections.Remove(pinnedItems);
+          break;
         }
       }
-
-      if (containsPinnedConnection) {
-        oeVApp.PinnedConnections.Remove(pinnedConnection);
-      }
-
-      int i = oeVApp.PinnedConnections.Count();
     }
   }
 }
